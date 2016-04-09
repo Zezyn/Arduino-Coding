@@ -19,11 +19,12 @@
   <FILE>C:\Users\EL4\Documents\Blinking_lights\Blinking_lights.map</FILE>
  </OUTPUT_FILES>
  <LABELS>
-  <RESET><FILE>C:\Users\EL4\Documents\Blinking_lights\Blinking_lights.asm</FILE><LINE>28</LINE></RESET>
-  <INT0isr><FILE>C:\Users\EL4\Documents\Blinking_lights\Blinking_lights.asm</FILE><LINE>67</LINE></INT0isr>
-  <INT1isr><FILE>C:\Users\EL4\Documents\Blinking_lights\Blinking_lights.asm</FILE><LINE>74</LINE></INT1isr>
-  <ROTATE><FILE>C:\Users\EL4\Documents\Blinking_lights\Blinking_lights.asm</FILE><LINE>80</LINE></ROTATE>
-  <MAIN><FILE>C:\Users\EL4\Documents\Blinking_lights\Blinking_lights.asm</FILE><LINE>59</LINE></MAIN>
-  <LEFT><FILE>C:\Users\EL4\Documents\Blinking_lights\Blinking_lights.asm</FILE><LINE>89</LINE></LEFT>
+  <RESET><FILE>C:\Users\EL4\Documents\Blinking_lights\Blinking_lights.asm</FILE><LINE>29</LINE></RESET>
+  <INT0isr><FILE>C:\Users\EL4\Documents\Blinking_lights\Blinking_lights.asm</FILE><LINE>69</LINE></INT0isr>
+  <INT1isr><FILE>C:\Users\EL4\Documents\Blinking_lights\Blinking_lights.asm</FILE><LINE>83</LINE></INT1isr>
+  <ROTATE><FILE>C:\Users\EL4\Documents\Blinking_lights\Blinking_lights.asm</FILE><LINE>92</LINE></ROTATE>
+  <MAIN><FILE>C:\Users\EL4\Documents\Blinking_lights\Blinking_lights.asm</FILE><LINE>61</LINE></MAIN>
+  <Goleft><FILE>C:\Users\EL4\Documents\Blinking_lights\Blinking_lights.asm</FILE><LINE>79</LINE></Goleft>
+  <LEFT><FILE>C:\Users\EL4\Documents\Blinking_lights\Blinking_lights.asm</FILE><LINE>102</LINE></LEFT>
  </LABELS>
 </ASSEMBLER_INFO>

@@ -1,5 +1,5 @@
 
-AVRASM ver. 2.1.42  C:\Users\EL4\Documents\Blinking_lights\Blinking_lights.asm Fri Apr 08 19:07:37 2016
+AVRASM ver. 2.1.42  C:\Users\EL4\Documents\Blinking_lights\Blinking_lights.asm Fri Apr 08 21:28:52 2016
 
 
 EQU  SIGNATURE_000 0000001e
@@ -451,11 +451,13 @@ EQU  INT_VECTORS_SIZE 00000013
 DEF  TEMP         r16
 DEF  SHIFTreg     r17
 DEF  UpDown       r18
+DEF  SPEED        r19
 EQU  TESTvalue    00000a63
 EQU  LeftRight    00000007
 CSEG RESET        00000013
 CSEG INT0isr      00000029
-CSEG INT1isr      0000002b
-CSEG ROTATE       0000002d
+CSEG INT1isr      0000002f
+CSEG ROTATE       00000032
 CSEG MAIN         00000026
-CSEG LEFT         00000034
+CSEG Goleft       0000002d
+CSEG LEFT         0000003a

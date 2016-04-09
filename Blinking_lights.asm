@@ -10,6 +10,7 @@
 .def TEMP = R16
 .def SHIFTreg = R17
 .def UpDown = R18
+.def SPEED = R19
 
 .equ TESTvalue = $0A63
 .equ LeftRight = 7
@@ -29,7 +30,8 @@ RESET:
 		ldi		TEMP, low(RAMEND)									;Load low byte of last address for SRAM into R16
 		out		SPL, TEMP											;Output value in TEMP (R16) to Stack Pointer Low Byte.
 
-		ldi		TEMP, (1<<DDB3)|(1<<DDB2)|(1<<DDB1)|(1<<DDB0)	;PortB Data Direction
+		//ldi		TEMP, (1<<DDB3)|(1<<DDB2)|(1<<DDB1)|(1<<DDB0)		;PortB Data Direction
+		ldi  	TEMP, $FF
 		out 	DDRB, TEMP											;Output value in TEMP to Data Direfction Register for Port B
 
 		ldi		TEMP, $00
@@ -50,7 +52,7 @@ RESET:
 		ldi 	TEMP, (1<<CS02)|(0<<CS01)|(1<<CS00)
 		out		TCCR0B, TEMP		
 
-		ldi 	SHIFTreg, 7 												;Clear all bits in COUNT. COUNT = 0
+		ldi 	SHIFTreg, 1 												;Clear all bits in COUNT. COUNT = 0
 
 		clr 	UpDown												;Clears UpDown register
 
@@ -65,29 +67,40 @@ MAIN:
 		rjmp	MAIN
 
 INT0isr:															;Inturrupt 0 routine
+		sbis 	GPIOR0, LeftRight
+		rjmp	Goleft
+		cbi		GPIOR0,	LeftRight
 		//ldi		Updown, $01
 		//nop
 		//reti
-		sbi 	GPIOR0, LeftRight
+		//sbi 	GPIOR0, LeftRight
+		reti
+
+Goleft:
+		sbi	GPIOR0, LeftRight
 		reti
 
 INT1isr:															;Interrupt 1 routine
 		//ldi		UpDown, $FF
 		//nop
 		//reti
-		cbi		GPIOR0, LeftRight
+		//cbi		GPIOR0, LeftRight
+		//reti
+		ldi		TEMP, $20
+		add		SPEED, TEMP
 		reti
 ROTATE:
+		out		TCNT0, SPEED
 		sbis	GPIOR0, LeftRight
 		rjmp	LEFT
 		bst		SHIFTreg, 0
 		lsr		SHIFTreg
-		bld		SHIFTreg, 3
+		bld		SHIFTreg, 7
 		out		PORTB, SHIFTreg
 		reti
 
 LEFT:
-		bst		SHIFTreg, 3
+		bst		SHIFTreg, 7
 		lsl		SHIFTreg
 		bld		SHIFTreg, 0
 		out 	PORTB, SHIFTreg
