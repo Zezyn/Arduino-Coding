@@ -1,5 +1,5 @@
 
-AVRASM ver. 2.1.42  C:\Users\EL4\Documents\Blinking_lights\Blinking_lights.asm Fri Apr 08 17:49:34 2016
+AVRASM ver. 2.1.42  C:\Users\EL4\Documents\Blinking_lights\Blinking_lights.asm Fri Apr 08 18:14:29 2016
 
 
 EQU  SIGNATURE_000 0000001e
@@ -453,7 +453,7 @@ DEF  COUNT        r17
 DEF  UpDown       r18
 EQU  TESTvalue    00000a63
 CSEG RESET        00000013
-CSEG INT0isr      0000002c
-CSEG INT1isr      0000002f
-CSEG CountUpDown  00000032
+CSEG INT0isr      00000029
+CSEG INT1isr      0000002c
+CSEG CountUpDown  0000002f
 CSEG MAIN         00000026

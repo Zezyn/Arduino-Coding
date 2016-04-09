@@ -58,9 +58,9 @@ RESET:
 
 MAIN:
 		nop
-		inc		COUNT
-		andi 	COUNT, $0F
-		out		PORTB, COUNT
+		//inc		COUNT
+		//andi 	COUNT, $0F
+		//out		PORTB, COUNT
 		nop
 		rjmp	MAIN
 
