@@ -8,10 +8,11 @@
 .list
 
 .def TEMP = R16
-.def COUNT = R17
+.def SHIFTreg = R17
 .def UpDown = R18
 
 .equ TESTvalue = $0A63
+.equ LeftRight = 7
 
 .ORG	$0000
 		rjmp 	RESET
@@ -20,10 +21,9 @@
 .ORG	INT1addr													;Interrupt Vector for External Interrupt 1
 		rjmp	INT1isr
 .ORG	OVF0addr
-		rjmp 	CountUpDown
+		rjmp 	ROTATE
 
 .ORG	INT_VECTORS_SIZE
-
 
 RESET:
 		ldi		TEMP, low(RAMEND)									;Load low byte of last address for SRAM into R16
@@ -50,7 +50,7 @@ RESET:
 		ldi 	TEMP, (1<<CS02)|(0<<CS01)|(1<<CS00)
 		out		TCCR0B, TEMP		
 
-		clr 	COUNT 												;Clear all bits in COUNT. COUNT = 0
+		ldi 	SHIFTreg, 7 												;Clear all bits in COUNT. COUNT = 0
 
 		clr 	UpDown												;Clears UpDown register
 
@@ -65,18 +65,37 @@ MAIN:
 		rjmp	MAIN
 
 INT0isr:															;Inturrupt 0 routine
-		ldi		Updown, $01
-		nop
+		//ldi		Updown, $01
+		//nop
+		//reti
+		sbi 	GPIOR0, LeftRight
 		reti
 
 INT1isr:															;Interrupt 1 routine
-		ldi		UpDown, $FF
-		nop
+		//ldi		UpDown, $FF
+		//nop
+		//reti
+		cbi		GPIOR0, LeftRight
+		reti
+ROTATE:
+		sbis	GPIOR0, LeftRight
+		rjmp	LEFT
+		bst		SHIFTreg, 0
+		lsr		SHIFTreg
+		bld		SHIFTreg, 3
+		out		PORTB, SHIFTreg
 		reti
 
-CountUpDown:														;Count routine
+LEFT:
+		bst		SHIFTreg, 3
+		lsl		SHIFTreg
+		bld		SHIFTreg, 0
+		out 	PORTB, SHIFTreg
+		reti
+			
+/*CountUpDown:														;Count routine
 		add		COUNT, UpDown 										;Adds two regesters together
 		out		PORTB, COUNT
 		reti
-
+*/
 

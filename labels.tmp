@@ -21,8 +21,9 @@
  <LABELS>
   <RESET><FILE>C:\Users\EL4\Documents\Blinking_lights\Blinking_lights.asm</FILE><LINE>28</LINE></RESET>
   <INT0isr><FILE>C:\Users\EL4\Documents\Blinking_lights\Blinking_lights.asm</FILE><LINE>67</LINE></INT0isr>
-  <INT1isr><FILE>C:\Users\EL4\Documents\Blinking_lights\Blinking_lights.asm</FILE><LINE>72</LINE></INT1isr>
-  <CountUpDown><FILE>C:\Users\EL4\Documents\Blinking_lights\Blinking_lights.asm</FILE><LINE>77</LINE></CountUpDown>
+  <INT1isr><FILE>C:\Users\EL4\Documents\Blinking_lights\Blinking_lights.asm</FILE><LINE>74</LINE></INT1isr>
+  <ROTATE><FILE>C:\Users\EL4\Documents\Blinking_lights\Blinking_lights.asm</FILE><LINE>80</LINE></ROTATE>
   <MAIN><FILE>C:\Users\EL4\Documents\Blinking_lights\Blinking_lights.asm</FILE><LINE>59</LINE></MAIN>
+  <LEFT><FILE>C:\Users\EL4\Documents\Blinking_lights\Blinking_lights.asm</FILE><LINE>89</LINE></LEFT>
  </LABELS>
 </ASSEMBLER_INFO>
