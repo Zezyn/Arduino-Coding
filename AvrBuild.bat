@@ -1,2 +1,0 @@
-@ECHO OFF
-"C:\Program Files (x86)\Atmel\AVR Tools\AvrAssembler2\avrasm2.exe" -S "C:\Users\EL4\Documents\Blinking_lights\labels.tmp" -fI -W+ie -C V2 -o "C:\Users\EL4\Documents\Blinking_lights\Blinking_lights.hex" -d "C:\Users\EL4\Documents\Blinking_lights\Blinking_lights.obj" -e "C:\Users\EL4\Documents\Blinking_lights\Blinking_lights.eep" -m "C:\Users\EL4\Documents\Blinking_lights\Blinking_lights.map" "C:\Users\EL4\Documents\Blinking_lights\Blinking_lights.asm"
