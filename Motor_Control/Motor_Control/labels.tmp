@@ -20,9 +20,9 @@
   <FILE>C:\Users\EL4\Arduino-Coding\Motor_Control\Motor_Control\Motor_Control.map</FILE>
  </OUTPUT_FILES>
  <LABELS>
-  <RESET><FILE>C:\Users\EL4\Arduino-Coding\Motor_Control\Motor_Control\Motor_Control.asm</FILE><LINE>19</LINE></RESET>
-  <BUTTON><FILE>C:\Users\EL4\Arduino-Coding\Motor_Control\Motor_Control\Motor_Control.asm</FILE><LINE>40</LINE></BUTTON>
-  <MAIN><FILE>C:\Users\EL4\Arduino-Coding\Motor_Control\Motor_Control\Motor_Control.asm</FILE><LINE>34</LINE></MAIN>
-  <COUNTdown><FILE>C:\Users\EL4\Arduino-Coding\Motor_Control\Motor_Control\Motor_Control.asm</FILE><LINE>51</LINE></COUNTdown>
+  <RESET><FILE>C:\Users\EL4\Arduino-Coding\Motor_Control\Motor_Control\Motor_Control.asm</FILE><LINE>24</LINE></RESET>
+  <BUTTON><FILE>C:\Users\EL4\Arduino-Coding\Motor_Control\Motor_Control\Motor_Control.asm</FILE><LINE>48</LINE></BUTTON>
+  <MAIN><FILE>C:\Users\EL4\Arduino-Coding\Motor_Control\Motor_Control\Motor_Control.asm</FILE><LINE>42</LINE></MAIN>
+  <COUNTdown><FILE>C:\Users\EL4\Arduino-Coding\Motor_Control\Motor_Control\Motor_Control.asm</FILE><LINE>80</LINE></COUNTdown>
  </LABELS>
 </ASSEMBLER_INFO>
