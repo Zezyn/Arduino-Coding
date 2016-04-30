@@ -1,0 +1,2 @@
+@ECHO OFF
+"C:\Program Files (x86)\Atmel\AVR Tools\AvrAssembler2\avrasm2.exe" -S "C:\Users\EL4\Arduino-Coding\Motor_Control\Motor_Control\labels.tmp" -fI -W+ie -C V2 -o "C:\Users\EL4\Arduino-Coding\Motor_Control\Motor_Control\Motor_Control.hex" -d "C:\Users\EL4\Arduino-Coding\Motor_Control\Motor_Control\Motor_Control.obj" -e "C:\Users\EL4\Arduino-Coding\Motor_Control\Motor_Control\Motor_Control.eep" -m "C:\Users\EL4\Arduino-Coding\Motor_Control\Motor_Control\Motor_Control.map" "C:\Users\EL4\Arduino-Coding\Motor_Control\Motor_Control\Motor_Control.asm"
