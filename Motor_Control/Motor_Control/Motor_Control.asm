@@ -3,12 +3,12 @@
 .include "DBmacro.inc"
 .list
 
-.equ 			DBcount = 200
-.equ			PERIOD = 33333
-.equ			PWMstep = 3000
-.equ 			PWMmax = 27000
+.equ 			DBcount = 200 //Debounce Count
+.equ			PERIOD = 33333	//Defines the period of loop 33000 milliseconds
+.equ			PWMstep = 3000	//Steps every 3000 milliseconds
+.equ 			PWMmax = 27000	//Maxes at 27000 milliseconds
 
-.def 			TEMP = R16
+.def 			TEMP = R16		
 .def 			COUNTER = R20
 .def			PWML = R18
 .def 			PWMH = R19
@@ -17,7 +17,7 @@
 					rjmp RESET
 
 .ORG			PCIaddr
-					rjmp BUTTON
+					rjmp TIMEROVERFLOW
 
 .ORG 			INT_VECTORS_SIZE
 
@@ -45,7 +45,7 @@ MAIN:
 	nop
 	rjmp 		MAIN
 
-BUTTON:
+TIMEROVERFLOW:
 	push	 	TEMP
 	in 	     	TEMP, SREG
 	push	 	TEMP
@@ -73,13 +73,6 @@ PWMdec:
 	ldi			PWMH, high(PWMmax)
 	ldi			PWML, low(PWMmax)
 
-	/*
-	rjmp 		COUNTdown
-	inc			COUNTER 
-	ori 		COUNTER, (1<<PB7)|(1<<PB6)
-	out 		PORTB, COUNTER
-	*/
-
 	pop			TEMP, SREG
 
 COUNTdown:
@@ -87,3 +80,12 @@ COUNTdown:
 	ori 		COUNTER, (1<<PB7)|(1<<PB6)
 	out 		PORTB, COUNTER
 	reti
+
+T1overflow:
+	sbis 		PINB, 7
+	rjmmp		COUNTdown
+	sbic 		PINB, 6
+	reti
+
+COUNTup:
+	
