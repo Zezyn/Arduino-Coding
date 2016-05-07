@@ -2,15 +2,19 @@
 .include "tn2313def.inc"
 .list
 
-.equ			PERIOD = 33333		//Defines the period of loop 33000 milliseconds
-.equ			PWMstep = 400		//Pulse width modulation Steps every 3000 milliseconds
-.equ 			PWMmax = 27000		//Pulse Width modulation Maxes at 27000 milliseconds
-.equ			PWMmin = 3000		//Min Pulse Width modulation 3000 miliseconds
+.equ			PERIOD = 20000		//Defines the period of loop 33000 milliseconds
+.equ			PWMstep = 170		//Pulse width modulation Steps every 3000 milliseconds
+.equ 			PWMmax = 18000		//Pulse Width modulation Maxes at 27000 milliseconds
+.equ			PWMmin = 1000		//Min Pulse Width modulation 3000 miliseconds
 
 .def 			TEMP = R16		
 .def			PWML = R18
 .def 			PWMH = R19
 .def 			COUNTER = R20
+
+
+.ORG		$0000
+			rjmp RESET
 
 .ORG		OVF1addr			
 			rjmp T1overflow			//Jump to T1overflow function
@@ -24,7 +28,7 @@ RESET:
 	out		DDRB, TEMP				//OUT DDRB into TEMP
 	ldi		TEMP, $E0				//Load immediate TEMP into $E0(HEX)
 	out		PORTB, TEMP				//PORTBOUT PORTB into TEMP
-	out		PCMSK, TEMP				//OUT PCMSK into TEMP
+	//out		PCMSK, TEMP				//OUT PCMSK into TEMP
 	ldi		TEMP, (1<<TOIE1)		//Load TEMP into bit shift 1 TOIE1
 	out		TIMSK, TEMP				//OUT TIMSK to TEMP
 
@@ -33,7 +37,7 @@ RESET:
 	ldi		TEMP, low(PERIOD)		//Load immediate TEMP into low byte PERIOD
 	out		ICR1L, TEMP				//OUT ICR1L into TEMP
 
-	ldi		TEMP, high(PWMmax)		//Load immediate TEMP into high byte PWMmax
+	ldi		TEMP, high(PWMmin)		//Load immediate TEMP into high byte PWMmax
 	out		OCR1AH, TEMP			//OUT OCR1AH into TEMP
 	mov		PWMH, TEMP				//Move PWMH into TEMP
 	ldi		TEMP, low(PWMmin)		//Load immediate TEMP into low byte PWMmin
@@ -46,7 +50,7 @@ RESET:
 	ldi		TEMP, (1<<WGM13)|(1<<WGM12)|(1<<CS10)
 	out		TCCR1B, TEMP
 
-
+	sei
 	
 MAIN: 
 	nop								//No operation
@@ -75,11 +79,23 @@ COUNTup:
 	cp		TEMP, PWML				//Compare TEMP and PWML
 	ldi		TEMP, high(PWMmax)		//Load immediate TEMP into high pdmMAX
 	cpc		TEMP, PWMH				//Compare with carry TEMP to PWMH
-	brge	PWMnotMAX				//Branch >=
+	brcc	PWMnotMAX				//Branch >=
 	ldi		PWMH, high(PWMmax) 		//Load immediate PWMH into high pwmMAX (high byte)
 	ldi		PWML, low(PWMmax)		//Load immediate PWML into low pwmMAX (low byte)
 	sbi		PORTB, 0				//Turn on max indicator// Set it PORTB to 0
 	sbi		GPIOR0, 0				//Set down flag//Set bit GPIORO to 0
+
+PWnotMAX:
+	out		OCR1AH, PWMH			//OUT OCR1AH, to PWMH 
+	out		OCR1AL, PWML			//OUT OCR1AL,to PWML
+
+RETURN:
+	pop		TEMP					//Pop TEMP off the stack
+	out		SREG, TEMP				//SREG output to TEMP
+	pop		TEMP					//Pop TEMP off the stack
+	reti							//RETURN
+
+
 
 COUNTdown:
 	ldi		TEMP, low(PWMstep)		//Load immediate TEMP into low byte PWMstep
@@ -96,16 +112,6 @@ COUNTdown:
 	ldi		PWML, low(PWMmin)		//Load immediate PWML into low bit pwmMIN
 	sbi		PORTB, 1				//Turn on MIN indicator//Set bit in PORTB to 1
 	sbi		GPIOR0, 0				//Clear down flag(count up)//Set bit GPIORO to 0
-
-RETURN:
-	pop		TEMP					//Pop TEMP off the stack
-	out		SREG, TEMP				//SREG output to TEMP
-	pop		TEMP					//Pop TEMP off the stack
-	reti							//RETURN
-
-PWnotMAX:
-	out		OCR1AH, PWMH			//OUT OCR1AH, to PWMH 
-	out		OCR1AL, PWML			//OUT OCR1AL,to PWML
 
 PWnotMIN:
 	out		OCR1AH, PWMH			//OUT OCR1AH to PWMH
